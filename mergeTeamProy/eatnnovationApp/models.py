@@ -61,3 +61,4 @@ class Analytic(models.Model):
     sales = models.IntegerField()
 class Meta:
      db_table = 'analytics'   
+

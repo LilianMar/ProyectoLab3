@@ -1,66 +1,60 @@
 <head>
  
-    {# Cargamos la librería #} 
-    {% load bootstrap4 %} 
-  
-    {# CSS Bootstrap #} 
-    {% bootstrap_css %} </head>
-  
-    {# Archivos #}
-    {% load static %} <!-- STATIC_URL -->
+  {# Cargamos la librería #} 
+  {% load bootstrap4 %} 
 
-    <p>Lilian Estefania Maradiago Correa </p>
-    <p>lemaradiagoc@correo.usbcali.edu.co </p>
-    <p>Codigo: 91308</p>
+  {# CSS Bootstrap #} 
+  {% bootstrap_css %} </head>
+
+  {# Archivos #}
+  {% load static %} <!-- STATIC_URL -->
+
+</head>
+
+<body>
   
-  </head>
-  
-  <body>
+  <div align="left" class="btn_crear mb-3">
+    <a href="create" type="button" class="btn btn-primary">Create</a> <!-- Boton create -->
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th width="35%">Product</th>
+        <th>Quantity</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
     
-    <div align="left" class="btn_crear mb-3">
-      <a href="crear" type="button" class="btn btn-primary">Crear</a> <!-- Boton crear -->
-    </div>
-  
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th width="35%">Nombre</th>
-          <th>Precio</th>
-          <th>Stock</th>
-          <th>Imagen</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-      
-      <!-- Recorremos los objetos o registros que tenemos en nuestra tabla 'libros' y los listamos -->
-      {% for libros in object_list %}
-        <tr>
-          <td>{{ libros.titulo }}</td>
-          <td>{{ libros.autor }}</td>
-          <td>{{ libros.num_paginas }}</td>
-          <td>{{ libros.anio_publicacion }}</td>
-          <td>
-     
-            <!-- Usaremos un formulario que realizará la tarea de eliminar un registro o libro desde la misma tabla HTML -->                        
-            <form method="POST" action="eliminar/{{libros.id}}">
-              {% csrf_token %}
-              <div class="btn-group">
-     
-                <!-- Creamos 3 botones que son ver, Editar y Eliminar, nos sirven para gestionar nuestros registros o libros -->
-                <a href="detalle/{{libros.id}}" title="Ver" type="button" class="btn btn-success">Ver </a>
-                <a href="editar/{{libros.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
-                <button class="btn btn-danger" onclick="return eliminar();" type="submit">
-                  Eliminar
-                </button>
-              </div>
-            </form>  
-          </td>
-        </tr>
-      {% endfor %}
-     
-      </tbody>
-    </table>
-    {# JS y jQuery Bootstrap #}
-    {% bootstrap_javascript jquery='full' %} 
-  </body>
+    <!-- Recorremos los objetos o registros que tenemos en nuestra tabla 'inventories' y los listamos -->
+    {% for inventory in object_list %}
+      <tr>
+        <td>{{ inventories.product }}</td>
+        <td>{{ inventories.quantity }}</td>
+        
+        <td>
+   
+          <!-- Usaremos un formulario que realizará la tarea de eliminar un registro o product desde la misma tabla HTML -->                        
+          <form method="POST" action="delete/{{inventories.id}}">
+            {% csrf_token %}
+            <div class="btn-group">
+   
+              <!-- Creamos 3 botones que son ver, Editar y Eliminar, nos sirven para gestionar nuestros registros o inventories
+       -->
+              <a href="detail/{{inventories.id}}" title="Show" type="button" class="btn btn-success">Show </a>
+              <a href="edit/{{inventories.id}}" title="Edit" type="button" class="btn btn-primary">Edit </a>
+              <button class="btn btn-danger" onclick="return eliminar();" type="submit">
+                Delete
+              </button>
+            </div>
+          </form>  
+        </td>
+      </tr>
+    {% endfor %}
+   
+    </tbody>
+  </table>
+  {# JS y jQuery Bootstrap #}
+  {% bootstrap_javascript jquery='full' %} 
+</body>
