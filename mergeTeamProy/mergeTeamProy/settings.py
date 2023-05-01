@@ -81,8 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE' : 'django.db.backends.postgresql_psycopg2',
         'NAME' : 'eatnnovation',
-        'USER' : 'lilian',
-        'PASSWORD' : 'lilian123',
+        'USER' : 'lilian', #cambiar
+        'PASSWORD' : 'lilian123', #cambiar
         'HOST' : 'localhost',
         'PORT' : '5432', #si lo dejas vacío tomara el puerto por default
     }
@@ -132,7 +132,6 @@ MEDIA_URL = '/reviews/'
 MEDIA_URL = '/payments/'
 MEDIA_URL = '/inventories/'
 MEDIA_URL = '/analitics/'
-MEDIA_URL = '/admins/'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 # Default primary key field type

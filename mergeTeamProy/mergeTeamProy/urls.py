@@ -24,7 +24,6 @@ from  eatnnovationApp.views import ReviewCreate,ReviewDelete,ReviewDetail,Review
 from  eatnnovationApp.views import PaymentCreate,PaymentDelete,PaymentDetail,PaymentList,PaymentUpdate
 from  eatnnovationApp.views import InventoryCreate,InventoryDelete,InventoryDetail,InventoryList,InventoryUpdate
 from  eatnnovationApp.views import AnalyticCreate,AnalyticDelete,AnalyticDetail,AnalyticList,AnalyticUpdate
-from  eatnnovationApp.views import AdminUpdate,AdminCreate,AdminDelete,AdminDetail, AdminList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -106,16 +105,5 @@ urlpatterns = [
     path('analitics/edit/<int:pk>', AnalyticUpdate.as_view(template_name = "analitics/updateAnalytic.html"), name='updateAnalytic'), 
     # La ruta 'delete' que usaremos para delete un Analytics o registro de la Base de Datos 
     path('analitics/delete/<int:pk>', AnalyticDelete.as_view(), name='deleteAnalytic'),
-
-    # La ruta 'leer' en donde listamos todos los registros o Admins de la Base de Datos
-    path('admins/', AdminList.as_view(template_name = "admins/readAdmin.html"), name='readAdmin'),
-    # La ruta 'details' en donde mostraremos una página con los details de un Admins o registro 
-    path('admins/detail/<int:pk>', AdminDetail.as_view(template_name = "admins/detailAdmin.html"), name='detailAdmin'),
-    # La ruta 'create' en donde mostraremos un formulario para create un nuevo Admins o registro  
-    path('admins/create', AdminCreate.as_view(template_name = "admins/createAdmin.html"), name='createAdmin'),
-    # La ruta 'actualizar' en donde mostraremos un formulario para actualizar un Admins o registro de la Base de Datos 
-    path('admins/edit/<int:pk>', AdminUpdate.as_view(template_name = "admins/updateAdmin.html"), name='updateAdmin'), 
-    # La ruta 'delete' que usaremos para delete un Admins o registro de la Base de Datos 
-    path('admins/delete/<int:pk>', AdminDelete.as_view(), name='deleteAdmin'),
 
 ]

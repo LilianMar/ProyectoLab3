@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from .models import Product, User, Shipment, Review, Payment, Inventory, Analytic, Admin
+from .models import Product, User, Shipment, Review, Payment, Inventory, Analytic
 #Instanciamos las vistas genéricas de Django 
 from django.views.generic import ListView, DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -285,42 +285,6 @@ class AnalyticDelete(SuccessMessageMixin, DeleteView):
         return reverse('readAnalytic') # Redireccionamos a la vista principal 'leer'  
     
 
-class AdminList(ListView):
-    model = Admin 
-
-class AdminCreate(SuccessMessageMixin, CreateView): 
-    model = Admin # Llamamos a la clase Admin que se encuentra en nuestro archivo 'models.py'
-    form = Admin # Definimos nuestro formulario con el nombre de la clase o modelo Admin
-    fields = "__all__" # Le decimos a Django que muestre todos los campos de la tabla admins de nuestra Base de Datos 
-    success_message = ' Admin Created Succesfully!' # Mostramos este Mensaje luego de Crear un Product
-
-    # Redireccionamos a la página principal luego de crear un registro o Admin
-    def get_success_url(self):        
-        return reverse('readAdmin') 
-      
-class AdminDetail(DetailView): 
-    model = Admin # Llamamos a la clase Admin que se encuentra en nuestro archivo 'models.py' 
-
-class AdminUpdate(SuccessMessageMixin, UpdateView): 
-    model = Admin # Llamamos a la clase Admin que se encuentra en nuestro archivo 'models.py' 
-    form = Admin # Definimos nuestro formulario con el nombre de la clase o modelo Admin 
-    fields = "__all__" # Le decimos a Django que muestre todos los campos de la tabla admins de nuestra Base de Datos 
-    success_message = ' Admin Updated Succesfully !' # Mostramos este Mensaje luego de Editar un Admin 
-
-    # Redireccionamos a la página principal luego de actualizar un registro o Admin
-    def get_success_url(self):               
-        return reverse('readAdmin') # Redireccionamos a la vista principal 'leer'
-
-class AdminDelete(SuccessMessageMixin, DeleteView): 
-    model = Admin 
-    form = Admin
-    fields = "__all__"     
-
-    # Redireccionamos a la página principal luego de eliminar un registro o Admin
-    def get_success_url(self): 
-        success_message =' Admin deleted Succesfully !' # Mostramos este Mensaje luego de Editar un Admin 
-        messages.success (self.request, (success_message))       
-        return reverse('readAdmin') # Redireccionamos a la vista principal 'leer'  
 
 
 
