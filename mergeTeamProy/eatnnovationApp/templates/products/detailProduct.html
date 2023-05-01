@@ -1,0 +1,32 @@
+<head>
+ 
+    {# Cargamos la librería #} 
+    {% load bootstrap4 %} 
+  
+    {# CSS Bootstrap #} 
+    {% bootstrap_css %} 
+
+    {# Widget Tweaks #}
+    {% load widget_tweaks %}
+
+    {# Archivos #}
+    {% load static %} <!-- STATIC_URL -->
+  
+</head>
+<body>
+    <h4>Details</h4>
+ 
+    <p><span class="txt_negrita">Name:</span> <br> {{object.name}}</p>
+    <p><span class="txt_negrita">Description:</span> <br> {{object.description}}</p>
+    <p><span class="txt_negrita">Price:</span> <br> {{object.price}}</p>
+    <p><span class="txt_negrita">Image:</span> <br> <img src="{% static 'uploads/'%}{{object.image}}" alt="{{object.name}}" class="img-fluid"> </p>
+    <p><span class="txt_negrita">Available:</span> <br> {{object.available}}</p>
+    
+ 
+    <!-- Botón para volver a la vista principal (Home) -->
+    <a href="../" type="submit" class="btn btn-primary">Back</a>
+
+
+    {# JS y jQuery Bootstrap #}
+    {% bootstrap_javascript jquery='full' %} 
+</body>
