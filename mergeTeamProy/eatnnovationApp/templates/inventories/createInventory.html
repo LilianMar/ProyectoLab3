@@ -12,28 +12,43 @@
     {# Archivos #}
     {% load static %} <!-- STATIC_URL -->
   
+    <style>
+        body {
+            background-color: white;
+        }
+
+        .add-info {
+            margin: 0 auto;
+            margin-top: 15px;
+            max-width: 900px;
+            background-color: #d9f688;
+            padding: 15px;
+            border-radius: 20px;
+            border: 1px solid black;
+        }
+
+    </style>
+
   </head>
   <body>
   
-    <form method="post" enctype="multipart/form-data">
+    <div class="add-info">
+        <form method="post" enctype="multipart/form-data">
     
-        <!-- Pasamos el 'csrf_token' de seguridad para poder crear un nuevo registro -->
-        {% csrf_token %}
-        
-        <!-- {{ form.as_p }} -->
-        <div class="form-group">
-            <label for="product" class="txt_negrita"> Product</label>
-            {{ form.product|add_class:"form-control" }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
-        </div>
-        <div class="form-group">
-            <label for="quantity" class="txt_negrita">Quantity</label>
-            {{ form.quantity|add_class:"form-control" }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
-        </div>
-        
-        
-        
-        <button type="submit" class="btn btn-primary">Accept</button>
-        <a href="./" type="submit" class="btn btn-primary">Cancel</a>
+            {% csrf_token %}
+    
+            <div class="form-group">
+                <label for="product" class="txt_negrita"> product</label>
+                {{ form.product|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+                <label for="quantity" class="txt_negrita">quantity</label>
+                {{ form.quantity|add_class:"form-control" }} 
+            </div>
+    
+            <button type="submit" class="btn btn-success">Accept</button>
+            <a href="./" type="submit" class="btn btn-danger">Cancel</a>
+    </div>
         
     </form>
     {# JS y jQuery Bootstrap #}

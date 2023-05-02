@@ -9,52 +9,148 @@
   {# Archivos #}
   {% load static %} <!-- STATIC_URL -->
 
+  <style>
+    body {
+      background-color: white;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'poppins', sans-serif;
+    }
+  
+    .contenedor {
+      margin: 0 auto;
+      margin-top: 20px;
+      max-width: 1200px;
+      background-color: #d9f688;
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid black;
+    }
+
+    nav{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+nav .logo{
+    width: 150px;
+    cursor: pointer;
+}
+nav .menu-img{
+    width: 40px;
+    cursor: pointer;
+}
+nav ul{
+    flex: 1;
+    text-align: right;
+    margin-right: 150px;
+
+}
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 10px 30px;
+}
+nav ul li a{
+    text-decoration: none;
+    color:#000;
+    font-weight: 700;
+    position: relative;
+    padding: 10px;
+}
+nav ul li a::before{
+    content: '';
+    width: 100%;
+    height: 0px;
+    background: #d9f688;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    bottom: -5px;
+    border-bottom-left-radius: 8px ;
+    border-bottom-right-radius: 8px;
+    transition: height 0.5s;
+
+}
+nav ul li a:hover::before{
+    height: 85px;
+}
+
+
+
+  </style>
+
 </head>
 
 <body>
+
+  <!--
+    <a href="{% url 'readShipment' %}">Shipments</a>
+    <a href="{% url 'readReview' %}">Reviews</a>
+    <a href="{% url 'readPayment' %}">Payments</a>
+    <a href="{% url 'readAnalytic' %}">Analytics</a>
+  -->
+
+  <nav>
+           
+    <img src="/static/img/logo.png" class="logo" >
+    
+
+    <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'readUser' %}">Users</a></li>
+        <li><a href="{% url 'readProduct' %}">Products</a></li>
+        <li><a href="{% url 'readInventory' %}">Inventories</a></li>
+        
+    </ul>
+    <img src="/static/img/menulogo.png" class="menu-img" >
+    
+    
+</nav>
   
-  <div align="left" class="btn_crear mb-3">
-    <a href="create" type="button" class="btn btn-primary">Create</a> <!-- Boton create -->
+  <div class="contenedor">
+    <b>Inventory</b>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th width="40%">Product</th>
+          <th>Quantity</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+      
+      {% for inventories in object_list %}
+        <tr>
+          <td>{{ inventories.product }}</td>
+          <td>{{ inventories.quantity }}</td>
+          
+          <td>
+     
+            <form method="POST" action="delete/{{inventories.id}}">
+              {% csrf_token %}
+              <div class="btn-group">
+     
+                <a href="detail/{{inventories.id}}" title="Show" type="button" class="btn btn-success">Show </a>
+                <a href="edit/{{inventories.id}}" title="Edit" type="button" class="btn btn-primary">Edit </a>
+                <button class="btn btn-danger" onclick="return eliminar();" type="submit">Delete</button>
+              </div>
+            </form>  
+          </td>
+        </tr>
+      {% endfor %}
+     
+      </tbody>
+    </table>
+    {# JS y jQuery Bootstrap #}
+    {% bootstrap_javascript jquery='full' %}
+    
+    <div align="center" class="btn-crear mb-3">
+      <a href="create" type="button" class="btn btn-success">Add</a>
+    </div>
   </div>
 
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th width="35%">Product</th>
-        <th>Quantity</th>
-        <th>Options</th>
-      </tr>
-    </thead>
-    <tbody>
-    
-    <!-- Recorremos los objetos o registros que tenemos en nuestra tabla 'inventories' y los listamos -->
-    {% for inventories in object_list %}
-      <tr>
-        <td>{{ inventories.product }}</td>
-        <td>{{ inventories.quantity }}</td>
-        
-        <td>
-   
-          <!-- Usaremos un formulario que realizará la tarea de eliminar un registro o product desde la misma tabla HTML -->                        
-          <form method="POST" action="delete/{{inventories.id}}">
-            {% csrf_token %}
-            <div class="btn-group">
-   
-              <!-- Creamos 3 botones que son ver, Editar y Eliminar, nos sirven para gestionar nuestros registros o inventories
-       -->
-              <a href="detail/{{inventories.id}}" title="Show" type="button" class="btn btn-success">Show </a>
-              <a href="edit/{{inventories.id}}" title="Edit" type="button" class="btn btn-primary">Edit </a>
-              <button class="btn btn-danger" onclick="return eliminar();" type="submit">
-                Delete
-              </button>
-            </div>
-          </form>  
-        </td>
-      </tr>
-    {% endfor %}
-   
-    </tbody>
-  </table>
-  {# JS y jQuery Bootstrap #}
-  {% bootstrap_javascript jquery='full' %} 
 </body>

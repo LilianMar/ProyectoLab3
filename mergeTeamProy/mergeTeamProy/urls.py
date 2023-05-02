@@ -25,6 +25,7 @@ from  eatnnovationApp.views import PaymentCreate,PaymentDelete,PaymentDetail,Pay
 from  eatnnovationApp.views import InventoryCreate,InventoryDelete,InventoryDetail,InventoryList,InventoryUpdate
 from  eatnnovationApp.views import AnalyticCreate,AnalyticDelete,AnalyticDetail,AnalyticList,AnalyticUpdate
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index', TemplateView.as_view(template_name='index.html'), name='home'),
@@ -106,4 +107,4 @@ urlpatterns = [
     # La ruta 'delete' que usaremos para delete un Analytics o registro de la Base de Datos 
     path('analitics/delete/<int:pk>', AnalyticDelete.as_view(), name='deleteAnalytic'),
 
-]
+] 

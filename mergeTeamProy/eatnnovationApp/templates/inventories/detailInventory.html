@@ -12,16 +12,36 @@
     {# Archivos #}
     {% load static %} <!-- STATIC_URL -->
   
+    <style>
+
+        body {
+            background-color: white;
+        }
+
+        .mirar-info {
+            margin: 0 auto;
+            margin-top: 15px;
+            max-width: 700px;
+            background-color: #d9f688;
+            padding: 15px;
+            border-radius: 20px;
+            border: 1px solid black;
+        }
+
+    </style>
+
 </head>
 <body>
-    <h4>Details</h4>
+    <div class="mirar-info">
+        <h4>Product Details</h4>
  
-    <p><span class="txt_negrita">Product:</span> <br> {{object.product}}</p>
-    <p><span class="txt_negrita">Quantity:</span> <br> {{object.quantity}}</p>
- 
-    <!-- Botón para volver a la vista principal (Home) -->
-    <a href="../" type="submit" class="btn btn-primary">Back</a>
+        <p><span class="txt_negrita">Product:</span> <br> {{object.product}}</p>
+        <p><span class="txt_negrita">Quantity:</span> <br> {{object.quantity}}</p>
+    
+        <!-- Botón para volver a la vista principal (Home) -->
+        <a href="../" type="submit" class="btn btn-primary">Back</a>
 
+    </div>
 
     {# JS y jQuery Bootstrap #}
     {% bootstrap_javascript jquery='full' %} 
