@@ -94,12 +94,6 @@ nav ul li a:hover::before{
 
 <body>
 
-  <!--
-    <a href="{% url 'readShipment' %}">Shipments</a>
-    <a href="{% url 'readReview' %}">Reviews</a>
-    <a href="{% url 'readPayment' %}">Payments</a>
-    <a href="{% url 'readAnalytic' %}">Analytics</a>
-  -->
 
   <nav>
            
@@ -110,7 +104,7 @@ nav ul li a:hover::before{
         <li><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'readUser' %}">Users</a></li>
         <li><a href="{% url 'readProduct' %}">Products</a></li>
-        <li><a href="{% url 'readInventory' %}">Inventories</a></li>
+        
         
     </ul>
     <img src="/static/img/menulogo.png" class="menu-img" >
@@ -135,7 +129,7 @@ nav ul li a:hover::before{
         {% for users in object_list %}
           <tr>
             <td>{{ users.id }}</td>
-            <td>{{ users.name }}</td>
+            <td>{{ users.username }}</td>
             <td>{{ users.email }}</td>
             
             <td>
