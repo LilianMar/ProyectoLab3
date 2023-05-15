@@ -130,8 +130,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'products/static/uploads')
 MEDIA_URL = '/shipments/'
 MEDIA_URL = '/reviews/'
 MEDIA_URL = '/payments/'
-MEDIA_URL = '/inventories/'
-MEDIA_URL = '/analitics/'
+MEDIA_URL = '/bills/'
+MEDIA_URL = '/detailsBills/'
+
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 STATICFILES_DIRS = [
@@ -142,3 +143,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#autenticacion de usuario 
+AUTH_USER_MODEL = 'eatnnovationApp.User'

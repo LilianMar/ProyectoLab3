@@ -22,8 +22,8 @@ from  eatnnovationApp.views import ProductCreate,ProductDelete,ProductDetail,Pro
 from  eatnnovationApp.views import ShipmentCreate,ShipmentDelete,ShipmentDetail,ShipmentList,ShipmentUpdate
 from  eatnnovationApp.views import ReviewCreate,ReviewDelete,ReviewDetail,ReviewList,ReviewUpdate
 from  eatnnovationApp.views import PaymentCreate,PaymentDelete,PaymentDetail,PaymentList,PaymentUpdate
-from  eatnnovationApp.views import InventoryCreate,InventoryDelete,InventoryDetail,InventoryList,InventoryUpdate
-from  eatnnovationApp.views import AnalyticCreate,AnalyticDelete,AnalyticDetail,AnalyticList,AnalyticUpdate
+from  eatnnovationApp.views import BillCreate,BillDelete,BillDetail,BillList,BillUpdate
+from  eatnnovationApp.views import DetailBillCreate,DetailBillDelete,DetailBillDetail,DetailBillList,DetailBillUpdate
 
 
 urlpatterns = [
@@ -85,26 +85,26 @@ urlpatterns = [
     # La ruta 'delete' que usaremos para delete un Payments o registro de la Base de Datos 
     path('payments/delete/<int:pk>', PaymentDelete.as_view(), name='deletePayment'),
 
-    # La ruta 'leer' en donde listamos todos los registros o Inventorys de la Base de Datos
-    path('inventories/', InventoryList.as_view(template_name = "inventories/readInventory.html"), name='readInventory'),
-    # La ruta 'details' en donde mostraremos una página con los details de un Inventorys o registro 
-    path('inventories/detail/<int:pk>', InventoryDetail.as_view(template_name = "inventories/detailInventory.html"), name='detailInventory'),
-    # La ruta 'create' en donde mostraremos un formulario para create un nuevo Inventorys o registro  
-    path('inventories/create', InventoryCreate.as_view(template_name = "inventories/createInventory.html"), name='createInventory'),
-    # La ruta 'actualizar' en donde mostraremos un formulario para actualizar un Inventorys o registro de la Base de Datos 
-    path('inventories/edit/<int:pk>', InventoryUpdate.as_view(template_name = "inventories/updateInventory.html"), name='updateInventory'), 
-    # La ruta 'delete' que usaremos para delete un Inventorys o registro de la Base de Datos 
-    path('inventories/delete/<int:pk>', InventoryDelete.as_view(), name='deleteInventory'),
+    # La ruta 'leer' en donde listamos todos los registros o Bills de la Base de Datos
+    path('bills/', BillList.as_view(template_name = "bills/readBill.html"), name='readBill'),
+    # La ruta 'details' en donde mostraremos una página con los details de un Bills o registro 
+    path('bills/detail/<int:pk>', BillDetail.as_view(template_name = "bills/detailBill.html"), name='detailBill'),
+    # La ruta 'create' en donde mostraremos un formulario para create un nuevo Bills o registro  
+    path('bills/create', BillCreate.as_view(template_name = "bills/createBill.html"), name='createBill'),
+    # La ruta 'actualizar' en donde mostraremos un formulario para actualizar un Bills o registro de la Base de Datos 
+    path('bills/edit/<int:pk>', BillUpdate.as_view(template_name = "bills/updateBill.html"), name='updateBill'), 
+    # La ruta 'delete' que usaremos para delete un Bills o registro de la Base de Datos 
+    path('bills/delete/<int:pk>', BillDelete.as_view(), name='deleteBill'),
 
-    # La ruta 'leer' en donde listamos todos los registros o Analytics de la Base de Datos
-    path('analitics/', AnalyticList.as_view(template_name = "analitics/readAnalytic.html"), name='readAnalytic'),
-    # La ruta 'details' en donde mostraremos una página con los details de un Analytics o registro 
-    path('analitics/detail/<int:pk>', AnalyticDetail.as_view(template_name = "analitics/detailAnalytic.html"), name='detailAnalytic'),
-    # La ruta 'create' en donde mostraremos un formulario para create un nuevo Analytics o registro  
-    path('analitics/create', AnalyticCreate.as_view(template_name = "analitics/createAnalytic.html"), name='createAnalytic'),
-    # La ruta 'actualizar' en donde mostraremos un formulario para actualizar un Analytics o registro de la Base de Datos 
-    path('analitics/edit/<int:pk>', AnalyticUpdate.as_view(template_name = "analitics/updateAnalytic.html"), name='updateAnalytic'), 
-    # La ruta 'delete' que usaremos para delete un Analytics o registro de la Base de Datos 
-    path('analitics/delete/<int:pk>', AnalyticDelete.as_view(), name='deleteAnalytic'),
+    # La ruta 'leer' en donde listamos todos los registros o DetailBills de la Base de Datos
+    path('detailsBills/', DetailBillList.as_view(template_name = "detailsBills/readDetailBill.html"), name='readDetailBill'),
+    # La ruta 'details' en donde mostraremos una página con los details de un DetailBills o registro 
+    path('detailsBills/detail/<int:pk>', DetailBillDetail.as_view(template_name = "detailsBills/detailDetailBill.html"), name='detailDetailBill'),
+    # La ruta 'create' en donde mostraremos un formulario para create un nuevo DetailBills o registro  
+    path('detailsBills/create', DetailBillCreate.as_view(template_name = "detailsBills/createDetailBill.html"), name='createDetailBill'),
+    # La ruta 'actualizar' en donde mostraremos un formulario para actualizar un DetailBills o registro de la Base de Datos 
+    path('detailsBills/edit/<int:pk>', DetailBillUpdate.as_view(template_name = "detailsBills/updateDetailBill.html"), name='updateDetailBill'), 
+    # La ruta 'delete' que usaremos para delete un DetailBills o registro de la Base de Datos 
+    path('detailsBills/delete/<int:pk>', DetailBillDelete.as_view(), name='deleteDetailBill'),
 
 ] 

@@ -2,7 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from .models import Product, User, Shipment, Review, Payment, Inventory, Analytic
+from .models import Product, User, Bill,DetailBill, Shipment, Review, Payment
+
 #Instanciamos las vistas genéricas de Django 
 from django.views.generic import ListView, DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -209,81 +210,80 @@ class PaymentDelete(SuccessMessageMixin, DeleteView):
         return reverse('readPayment') # Redireccionamos a la vista principal 'leer'  
     
 
-class InventoryList(ListView):
-    model = Inventory 
+class BillList(ListView):
+    model = Bill 
 
-class InventoryCreate(SuccessMessageMixin, CreateView): 
-    model = Inventory # Llamamos a la clase Inventory que se encuentra en nuestro archivo 'models.py'
-    form = Inventory # Definimos nuestro formulario con el nombre de la clase o modelo Inventory
+class BillCreate(SuccessMessageMixin, CreateView): 
+    model = Bill # Llamamos a la clase Bill que se encuentra en nuestro archivo 'models.py'
+    form = Bill # Definimos nuestro formulario con el nombre de la clase o modelo Bill
     fields = "__all__" # Le decimos a Django que muestre todos los campos de la tabla inventories de nuestra Base de Datos 
-    success_message = ' Inventory Created Succesfully!' # Mostramos este Mensaje luego de Crear un Product
+    success_message = ' Bill Created Succesfully!' # Mostramos este Mensaje luego de Crear un Product
 
-    # Redireccionamos a la página principal luego de crear un registro o Inventory
+    # Redireccionamos a la página principal luego de crear un registro o Bill
     def get_success_url(self):        
-        return reverse('readInventory') 
+        return reverse('readBill') 
       
-class InventoryDetail(DetailView): 
-    model = Inventory # Llamamos a la clase Inventory que se encuentra en nuestro archivo 'models.py' 
+class BillDetail(DetailView): 
+    model = Bill # Llamamos a la clase Bill que se encuentra en nuestro archivo 'models.py' 
 
-class InventoryUpdate(SuccessMessageMixin, UpdateView): 
-    model = Inventory # Llamamos a la clase Inventory que se encuentra en nuestro archivo 'models.py' 
-    form = Inventory # Definimos nuestro formulario con el nombre de la clase o modelo Inventory 
+class BillUpdate(SuccessMessageMixin, UpdateView): 
+    model = Bill # Llamamos a la clase Bill que se encuentra en nuestro archivo 'models.py' 
+    form = Bill # Definimos nuestro formulario con el nombre de la clase o modelo Bill 
     fields = "__all__" # Le decimos a Django que muestre todos los campos de la tabla inventories de nuestra Base de Datos 
-    success_message = ' Inventory Updated Succesfully !' # Mostramos este Mensaje luego de Editar un Inventory 
+    success_message = ' Bill Updated Succesfully !' # Mostramos este Mensaje luego de Editar un Bill 
 
-    # Redireccionamos a la página principal luego de actualizar un registro o Inventory
+    # Redireccionamos a la página principal luego de actualizar un registro o Bill
     def get_success_url(self):               
-        return reverse('readInventory') # Redireccionamos a la vista principal 'leer'
+        return reverse('readBill') # Redireccionamos a la vista principal 'leer'
 
-class InventoryDelete(SuccessMessageMixin, DeleteView): 
-    model = Inventory 
-    form = Inventory
+class BillDelete(SuccessMessageMixin, DeleteView): 
+    model = Bill 
+    form = Bill
     fields = "__all__"     
 
-    # Redireccionamos a la página principal luego de eliminar un registro o Inventory
+    # Redireccionamos a la página principal luego de eliminar un registro o Bill
     def get_success_url(self): 
-        success_message =' Inventory deleted Succesfully !' # Mostramos este Mensaje luego de Editar un Inventory 
+        success_message =' Bill deleted Succesfully !' # Mostramos este Mensaje luego de Editar un Bill 
         messages.success (self.request, (success_message))       
-        return reverse('readInventory') # Redireccionamos a la vista principal 'leer'  
+        return reverse('readBill') # Redireccionamos a la vista principal 'leer'  
     
 
-class AnalyticList(ListView):
-    model = Analytic 
+class DetailBillList(ListView):
+    model = DetailBill 
 
-class AnalyticCreate(SuccessMessageMixin, CreateView): 
-    model = Analytic # Llamamos a la clase Analytic que se encuentra en nuestro archivo 'models.py'
-    form = Analytic # Definimos nuestro formulario con el nombre de la clase o modelo Analytic
-    fields = "__all__" # Le decimos a Django que muestre todos los campos de la tabla analitycs de nuestra Base de Datos 
-    success_message = ' Analytic Created Succesfully!' # Mostramos este Mensaje luego de Crear un Product
+class DetailBillCreate(SuccessMessageMixin, CreateView): 
+    model = DetailBill # Llamamos a la clase DetailBill que se encuentra en nuestro archivo 'models.py'
+    form = DetailBill # Definimos nuestro formulario con el nombre de la clase o modelo DetailBill
+    fields = "__all__" # Le decimos a Django que muestre todos los campos de la tabla DetailBill de nuestra Base de Datos 
+    success_message = ' Detail Bill Created Succesfully!' # Mostramos este Mensaje luego de Crear un Product
 
-    # Redireccionamos a la página principal luego de crear un registro o Analytic
+    # Redireccionamos a la página principal luego de crear un registro o DetailBill
     def get_success_url(self):        
-        return reverse('readAnalytic') 
+        return reverse('readDetailBill') 
       
-class AnalyticDetail(DetailView): 
-    model = Analytic # Llamamos a la clase Analytic que se encuentra en nuestro archivo 'models.py' 
+class DetailBillDetail(DetailView): 
+    model = DetailBill # Llamamos a la clase DetailBill que se encuentra en nuestro archivo 'models.py' 
 
-class AnalyticUpdate(SuccessMessageMixin, UpdateView): 
-    model = Analytic # Llamamos a la clase Analytic que se encuentra en nuestro archivo 'models.py' 
-    form = Analytic # Definimos nuestro formulario con el nombre de la clase o modelo Analytic 
-    fields = "__all__" # Le decimos a Django que muestre todos los campos de la tabla analitycs de nuestra Base de Datos 
-    success_message = ' Analytic Updated Succesfully !' # Mostramos este Mensaje luego de Editar un Analytic 
+class DetailBillUpdate(SuccessMessageMixin, UpdateView): 
+    model = DetailBill # Llamamos a la clase DetailBill que se encuentra en nuestro archivo 'models.py' 
+    form = DetailBill # Definimos nuestro formulario con el nombre de la clase o modelo DetailBill 
+    fields = "__all__" # Le decimos a Django que muestre todos los campos de la tabla DetailBill de nuestra Base de Datos 
+    success_message = ' Detail Bill Updated Succesfully !' # Mostramos este Mensaje luego de Editar un DetailBill 
 
-    # Redireccionamos a la página principal luego de actualizar un registro o Analytic
+    # Redireccionamos a la página principal luego de actualizar un registro o DetailBill
     def get_success_url(self):               
-        return reverse('readAnalytic') # Redireccionamos a la vista principal 'leer'
+        return reverse('readDetailBill') # Redireccionamos a la vista principal 'leer'
 
-class AnalyticDelete(SuccessMessageMixin, DeleteView): 
-    model = Analytic 
-    form = Analytic
+class DetailBillDelete(SuccessMessageMixin, DeleteView): 
+    model = DetailBill 
+    form = DetailBill
     fields = "__all__"     
 
-    # Redireccionamos a la página principal luego de eliminar un registro o Analytic
+    # Redireccionamos a la página principal luego de eliminar un registro o DetailBill
     def get_success_url(self): 
-        success_message =' Analytic deleted Succesfully !' # Mostramos este Mensaje luego de Editar un Analytic 
+        success_message =' Detail Bill deleted Succesfully !' # Mostramos este Mensaje luego de Editar un DetailBill 
         messages.success (self.request, (success_message))       
-        return reverse('readAnalytic') # Redireccionamos a la vista principal 'leer'  
-    
+        return reverse('readDetailBill') # Redireccionamos a la vista principal 'leer'  
 
 
 
