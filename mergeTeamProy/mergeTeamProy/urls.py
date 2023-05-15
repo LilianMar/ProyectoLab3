@@ -26,9 +26,11 @@ from  eatnnovationApp.views import BillCreate,BillDelete,BillDetail,BillList,Bil
 from  eatnnovationApp.views import DetailBillCreate,DetailBillDelete,DetailBillDetail,DetailBillList,DetailBillUpdate
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index', TemplateView.as_view(template_name='index.html'), name='home'),
+    path('login/', TemplateView.as_view(template_name='login.html'), name='loginUser'),
 
     # La ruta 'leer' en donde listamos todos los registros o Users de la Base de Datos
     path('users/', UserList.as_view(template_name = "users/readUser.html"), name='readUser'),

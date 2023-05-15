@@ -16,7 +16,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 #Habilitamos los formularios en Django 
 from django import forms
 
+
 # Create your views here.
+
+
 
 class ProductList(ListView):
     model = Product 

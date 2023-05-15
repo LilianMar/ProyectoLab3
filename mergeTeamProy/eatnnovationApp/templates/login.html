@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Login </title>
-    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/styleLogin.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
       rel="stylesheet"
@@ -20,7 +20,7 @@
       </form>
     </div>
     <p class="para-2">
-      ¿No tienes cuenta? <a href="register.html">Registrate aqui</a>
+      ¿No tienes cuenta? <a href="{% url 'createUser' %}">Registrate aqui</a>
     </p>
   </body>
 </html>
