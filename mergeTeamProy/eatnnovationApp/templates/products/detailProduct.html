@@ -1,0 +1,49 @@
+<head>
+ 
+    {# Cargamos la librería #} 
+    {% load bootstrap4 %} 
+  
+    {# CSS Bootstrap #} 
+    {% bootstrap_css %} 
+
+    {# Widget Tweaks #}
+    {% load widget_tweaks %}
+
+    {# Archivos #}
+    {% load static %} <!-- STATIC_URL -->
+  
+    <style>
+
+        body {
+            background-color: white;
+        }
+
+        .mirar-info {
+            margin: 0 auto;
+            margin-top: 15px;
+            max-width: 700px;
+            background-color: #d9f688;
+            padding: 15px;
+            border-radius: 20px;
+            border: 1px solid black;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="mirar-info">
+        <h4>Detalles del Producto</h4>
+ 
+        <p><span class="txt_negrita">Nombre del Producto:</span> <br> {{object.name}}</p>
+        <p><span class="txt_negrita">Descripcion:</span> <br> {{object.description}}</p>
+        <p><span class="txt_negrita">Precio:</span> <br> {{object.price}}</p>
+        <p><span class="txt_negrita">Imagen:</span> <br> <img src="{% static 'uploads/'%}{{object.image}}" alt="{{object.name}}" class="img-fluid"> </p>
+        <p><span class="txt_negrita">Disponibilidad:</span> <br> {{object.available}}</p>
+        
+        <a href="../" type="submit" class="btn btn-primary">Volver</a>
+    </div>
+
+    {# JS y jQuery Bootstrap #}
+    {% bootstrap_javascript jquery='full' %} 
+</body>

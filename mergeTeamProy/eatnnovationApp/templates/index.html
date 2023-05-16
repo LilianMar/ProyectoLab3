@@ -1,0 +1,54 @@
+<!--<a href="{% url 'readUser' %}">Users</a><br>
+<a href="{% url 'readProduct' %}"> Products</a><br>
+<a href="{% url 'readShipment' %}">Shipments</a><br>
+<a href="{% url 'readReview' %}">Reviews</a><br>
+<a href="{% url 'readPayment' %}">Payments</a><br>
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <title>HomePageLaboratorio</title>
+</head>
+<body>
+    <div class="hero">
+
+        <nav>
+           
+            <img src="/static/img/logo.png" class="logo" >
+            
+
+            <ul>
+                <li><a href="{% url 'readProduct' %}">Products</a></li>
+                <li><a href="{% url 'loginUser' %}">Login</a></li>
+                
+                
+            </ul>
+            <img src="/static/img/menulogo.png" class="menu-img" >
+            
+            
+        </nav>
+        <div class="row">
+
+            <div class="col">
+                <h1>Enjoy a<br>rich stuffed arepa</h1>
+                <a href="{% url 'menuProduc' %}">Order now</a>
+            </div>
+            <div class="col">
+                <img src="/static/img/arepaimagen.png" class="feature-img">
+                
+            </div>
+
+        </div>
+
+
+    </div>
+    
+</body>
+</html>
