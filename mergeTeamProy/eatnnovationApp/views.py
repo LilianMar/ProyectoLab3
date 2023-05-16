@@ -1,4 +1,3 @@
-from django.shortcuts import render
 
 # Create your views here.
 
@@ -14,11 +13,35 @@ from django.contrib import messages
 #Habilitamos los mensajes para class-based views 
 from django.contrib.messages.views import SuccessMessageMixin
 #Habilitamos los formularios en Django 
-from django import forms
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
 
 
-# Create your views here.
+class CustomLoginView(LoginView):
+    template_name = 'login.html'  # Reemplaza 'login.html' con la plantilla adecuada
+    success_url = 'index'  # Reemplaza '/' con la URL a la que se redirigirá después del inicio de sesión exitoso
+    
+    def login_view(request):
+        if request.method == 'POST':
+            # Procesar el formulario de inicio de sesión
+            email = request.POST['email']
+            password = request.POST['password']
 
+            # Verificar las credenciales del usuario
+            user = authenticate(request, email=email, password=password)
+
+            if user is not None:
+                # Las credenciales son válidas, iniciar sesión
+                login(request, user)
+                return redirect('home')  # Redirigir al usuario a una página de éxito
+            else:
+                # Las credenciales son inválidas, mostrar un mensaje de error
+                error_message = 'Credenciales inválidas. Intente nuevamente.'
+                return render(request, 'login.html', {'error_message': error_message})
+        else:
+            # Mostrar el formulario de inicio de sesión vacío
+            return render(request, 'login.html')
 
 
 class ProductList(ListView):

@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 # Create your models here.
 
-class CustomUserManager(BaseUserManager):
+class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         extra_fields.setdefault('role', 'cliente')
 
@@ -33,10 +33,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name']
 
-    objects = CustomUserManager()
+    objects = UserManager()
 
     def __str__(self):
         return self.email
+    
     
 class Meta:
      db_table = 'users'    

@@ -24,14 +24,14 @@ from  eatnnovationApp.views import ReviewCreate,ReviewDelete,ReviewDetail,Review
 from  eatnnovationApp.views import PaymentCreate,PaymentDelete,PaymentDetail,PaymentList,PaymentUpdate
 from  eatnnovationApp.views import BillCreate,BillDelete,BillDetail,BillList,BillUpdate
 from  eatnnovationApp.views import DetailBillCreate,DetailBillDelete,DetailBillDetail,DetailBillList,DetailBillUpdate
-
-
+from  eatnnovationApp.views import CustomLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index', TemplateView.as_view(template_name='index.html'), name='home'),
-    path('login/', TemplateView.as_view(template_name='login.html'), name='loginUser'),
-
+    path('indexAdmin/', TemplateView.as_view(template_name='indexAdmin.html'), name='homeAdmin'),
+    #path('login/', TemplateView.as_view(template_name='login.html'), name='loginUser'),
+    path('login/', CustomLoginView.as_view(template_name='login.html'), name='login'),
     # La ruta 'leer' en donde listamos todos los registros o Users de la Base de Datos
     path('users/', UserList.as_view(template_name = "users/readUser.html"), name='readUser'),
     # La ruta 'details' en donde mostraremos una página con los details de un Users o registro 
