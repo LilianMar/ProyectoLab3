@@ -93,4 +93,3 @@ class Shipment(models.Model):
     sent = models.BooleanField(default=False)
 class Meta:
      db_table = 'shipments' 
-

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 
 # Create your views here.
 
@@ -14,9 +13,36 @@ from django.contrib import messages
 #Habilitamos los mensajes para class-based views 
 from django.contrib.messages.views import SuccessMessageMixin
 #Habilitamos los formularios en Django 
-from django import forms
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
 
-# Create your views here.
+
+class CustomLoginView(LoginView):
+    template_name = 'login.html'  # Reemplaza 'login.html' con la plantilla adecuada
+    success_url = '/indexAdmin/'  # Reemplaza '/' con la URL a la que se redirigirá después del inicio de sesión exitoso
+   
+    def login_view(request):
+        if request.method == 'POST':
+            # Procesar el formulario de inicio de sesión
+            email = request.POST['email']
+            password = request.POST['password']
+
+            # Verificar las credenciales del usuario
+            user = authenticate(request, email=email, password=password)
+
+            if user is not None:
+                # Las credenciales son válidas, iniciar sesión
+                login(request, user)
+                return redirect('homeAdmin')  # Redirigir al usuario a una página de éxito
+            else:
+                # Las credenciales son inválidas, mostrar un mensaje de error
+                error_message = 'Credenciales inválidas. Intente nuevamente.'
+                return render(request, '', {'error_message': error_message})
+        else:
+            # Mostrar el formulario de inicio de sesión vacío
+            return render(request, './templates/index.html')
+
 
 class ProductList(ListView):
     model = Product 
@@ -29,8 +55,15 @@ class ProductCreate(SuccessMessageMixin, CreateView):
 
     # Redireccionamos a la página principal luego de crear un registro o Product
     def get_success_url(self):        
-        return reverse('readProduct') # revisar la pagina a la que se va a redireccionar User 
-      
+        return reverse('readProduct') # revisar la pagina a la que se va a redireccionar User
+    
+def menu(request):
+        products = Product.objects.all()
+        context = {
+            'products': products
+        }
+        return render(request, 'menu.html', context)
+    
 class ProductDetail(DetailView): 
     model = Product # Llamamos a la clase 'Product' que se encuentra en nuestro archivo 'models.py' 
 
@@ -54,8 +87,6 @@ class ProductDelete(SuccessMessageMixin, DeleteView):
         success_message = 'Product deleted Succesfully !' # Mostramos este Mensaje luego de Editar un Product 
         messages.success (self.request, (success_message))       
         return reverse('readProduct') # Redireccionamos a la vista principal 'leer'  
-    
-
 
 class UserList(ListView):
     model = User 
@@ -95,7 +126,6 @@ class UserDelete(SuccessMessageMixin, DeleteView):
         return reverse('readUser') # Redireccionamos a la vista principal 'leer'  
     
 
-
 class ShipmentList(ListView):
     model = Shipment 
 
@@ -132,7 +162,6 @@ class ShipmentDelete(SuccessMessageMixin, DeleteView):
         success_message =' Shipment deleted Succesfully !' # Mostramos este Mensaje luego de Editar un Shipment 
         messages.success (self.request, (success_message))       
         return reverse('readShipment') # Redireccionamos a la vista principal 'leer'  
-
 
 class ReviewList(ListView):
     model = Review 
@@ -171,7 +200,6 @@ class ReviewDelete(SuccessMessageMixin, DeleteView):
         messages.success (self.request, (success_message))       
         return reverse('readReview') # Redireccionamos a la vista principal 'leer'  
     
-
 class PaymentList(ListView):
     model = Payment 
 
@@ -284,3 +312,7 @@ class DetailBillDelete(SuccessMessageMixin, DeleteView):
         success_message =' Detail Bill deleted Succesfully !' # Mostramos este Mensaje luego de Editar un DetailBill 
         messages.success (self.request, (success_message))       
         return reverse('readDetailBill') # Redireccionamos a la vista principal 'leer'  
+
+
+
+

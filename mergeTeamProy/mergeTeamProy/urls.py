@@ -24,27 +24,39 @@ from  eatnnovationApp.views import ReviewCreate,ReviewDelete,ReviewDetail,Review
 from  eatnnovationApp.views import PaymentCreate,PaymentDelete,PaymentDetail,PaymentList,PaymentUpdate
 from  eatnnovationApp.views import BillCreate,BillDelete,BillDetail,BillList,BillUpdate
 from  eatnnovationApp.views import DetailBillCreate,DetailBillDelete,DetailBillDetail,DetailBillList,DetailBillUpdate
-
-
+from  eatnnovationApp.views import CustomLoginView
+from  eatnnovationApp.views import menu
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index', TemplateView.as_view(template_name='index.html'), name='home'),
-    path('login/', TemplateView.as_view(template_name='login.html'), name='loginUser'),
-    path('menu/', TemplateView.as_view(template_name='menu.html'), name='menuProduc'),
 
-    # La ruta 'leer' en donde listamos todos los registros o Users de la Base de Datos
+    # Página principal para los clientes
+    path('index', TemplateView.as_view(template_name='pagina/index.html'), name='home'),
+    # Página para el administrador
+    path('indexAdmin/', TemplateView.as_view(template_name='pagina/indexAdmin.html'), name='homeAdmin'),
+    # Ruta para Log-in (Admin y clientes)
+    path('login/', CustomLoginView.as_view(template_name='login.html'), name='login'),
+    # Ruta para registrarse
+    path('registro/', TemplateView.as_view(template_name='login/register.html'), name='register'),
+    # Ruta para el menú
+    path('menu/', menu, name='menu'),
+
+    # USUARIOS
+
+    # La ruta 'leer' se listan los usuarios
     path('users/', UserList.as_view(template_name = "users/readUser.html"), name='readUser'),
-    # La ruta 'details' en donde mostraremos una página con los details de un Users o registro 
+    # La ruta 'details' detalles del usuario
     path('users/detail/<int:pk>', UserDetail.as_view(template_name = "users/detailUser.html"), name='detailUser'),
-    # La ruta 'create' en donde mostraremos un formulario para create un nuevo Users o registro  
+    # La ruta 'create' para el formulario de crear  
     path('users/create', UserCreate.as_view(template_name = "users/createUser.html"), name='createUser'),
-    # La ruta 'actualizar' en donde mostraremos un formulario para actualizar un Users o registro de la Base de Datos 
+    # La ruta 'actualizar' para el formulario de actualizar
     path('users/edit/<int:pk>', UserUpdate.as_view(template_name = "users/updateUser.html"), name='updateUser'), 
-    # La ruta 'delete' que usaremos para delete un Users o registro de la Base de Datos 
+    # La ruta 'delete' para borrar los usuarios 
     path('users/delete/<int:pk>', UserDelete.as_view(), name='deleteUser'),
 
-    # La ruta 'leer' en donde listamos todos los registros o Products de la Base de Datos
+    # PRODUCTOS
+
+    # La ruta 'leer' se listan los productos
     path('products/', ProductList.as_view(template_name = "products/readProduct.html"), name='readProduct'),
     # La ruta 'details' en donde mostraremos una página con los details de un Products o registro 
     path('products/detail/<int:pk>', ProductDetail.as_view(template_name = "products/detailProduct.html"), name='detailProduct'),
@@ -54,6 +66,8 @@ urlpatterns = [
     path('products/edit/<int:pk>', ProductUpdate.as_view(template_name = "products/updateProduct.html"), name='updateProduct'), 
     # La ruta 'delete' que usaremos para delete un Products o registro de la Base de Datos 
     path('products/delete/<int:pk>', ProductDelete.as_view(), name='deleteProduct'),
+
+    # INVENTARIOS
 
     # La ruta 'leer' en donde listamos todos los registros o Shipments de la Base de Datos
     path('shipments/', ShipmentList.as_view(template_name = "shipments/readShipment.html"), name='readShipment'),
@@ -66,6 +80,8 @@ urlpatterns = [
     # La ruta 'delete' que usaremos para delete un Shipments o registro de la Base de Datos 
     path('shipments/delete/<int:pk>', ShipmentDelete.as_view(), name='deleteShipment'),
 
+    # RESEÑAS
+
     # La ruta 'leer' en donde listamos todos los registros o Reviews de la Base de Datos
     path('reviews/', ReviewList.as_view(template_name = "reviews/readReview.html"), name='readReview'),
     # La ruta 'details' en donde mostraremos una página con los details de un Reviews o registro 
@@ -76,6 +92,8 @@ urlpatterns = [
     path('reviews/edit/<int:pk>', ReviewUpdate.as_view(template_name = "reviews/updateReview.html"), name='updateReview'), 
     # La ruta 'delete' que usaremos para delete un Reviews o registro de la Base de Datos 
     path('reviews/delete/<int:pk>', ReviewDelete.as_view(), name='deleteReview'),
+
+    # REGISTROS
 
     # La ruta 'leer' en donde listamos todos los registros o Payments de la Base de Datos
     path('payments/', PaymentList.as_view(template_name = "payments/readPayment.html"), name='readPayment'),
@@ -88,6 +106,8 @@ urlpatterns = [
     # La ruta 'delete' que usaremos para delete un Payments o registro de la Base de Datos 
     path('payments/delete/<int:pk>', PaymentDelete.as_view(), name='deletePayment'),
 
+    # FACTURAS
+
     # La ruta 'leer' en donde listamos todos los registros o Bills de la Base de Datos
     path('bills/', BillList.as_view(template_name = "bills/readBill.html"), name='readBill'),
     # La ruta 'details' en donde mostraremos una página con los details de un Bills o registro 
@@ -98,6 +118,8 @@ urlpatterns = [
     path('bills/edit/<int:pk>', BillUpdate.as_view(template_name = "bills/updateBill.html"), name='updateBill'), 
     # La ruta 'delete' que usaremos para delete un Bills o registro de la Base de Datos 
     path('bills/delete/<int:pk>', BillDelete.as_view(), name='deleteBill'),
+
+    # DETALLES FACTURA
 
     # La ruta 'leer' en donde listamos todos los registros o DetailBills de la Base de Datos
     path('detailsBills/', DetailBillList.as_view(template_name = "detailsBills/readDetailBill.html"), name='readDetailBill'),

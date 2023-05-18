@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
-    <title>HomePageLaboratorio</title>
+    <title>Administrador</title>
 </head>
 <body>
     <div class="hero">
@@ -26,7 +26,10 @@
 
             <ul>
                 <li><a href="{% url 'readProduct' %}">Products</a></li>
-                <li><a href="{% url 'loginUser' %}">Login</a></li>
+                <li><a href="{% url 'readUser' %}">Users</a></li>
+                <li><a href="{% url 'readShipment' %}">Shipments</a></li>
+                <li><a href="{% url 'readReview' %}">Reviews</a></li>
+                <li><a href="{% url 'readPayment' %}">Registers</a></li>
                 
                 
             </ul>
@@ -38,17 +41,20 @@
 
             <div class="col">
                 <h1>Enjoy a<br>rich stuffed arepa</h1>
-                <a href="{% url 'menuProduc' %}">Order now</a>
+                <a href="{% url 'menu' %}">Order now</a>
             </div>
             <div class="col">
                 <img src="/static/img/arepaimagen.png" class="feature-img">
-                
             </div>
-
         </div>
-
-
     </div>
-    
 </body>
+<footer>
+    <div class="creators">
+        <h3>Creado por:</h3>
+        <a href="https://github.com/LilianMar">Lilian Maradiago</a><br>
+        <a href="https://github.com/Ngonzalez693">Nicolás González</a><br>
+        <a href="https://github.com/SoyRoman">Camilo Román</a>
+    </div>
+</footer>
 </html>

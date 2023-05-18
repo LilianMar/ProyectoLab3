@@ -12,6 +12,10 @@
     <style>
       body {
         background-color: white;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'poppins', sans-serif;
       }
     
       .contenedor {
@@ -80,7 +84,7 @@
   <body>
   
     <div class="navegador">
-      <a href="{% url 'home' %}">Volver al Menú</a>
+      <a href="{% url 'homeAdmin' %}">Volver</a>
       <a href="{% url 'readProduct' %}">Productos</a>
       <a href="{% url 'readShipment' %}">Envíos</a>
       <a href="{% url 'readReview' %}">Reseñas</a>
