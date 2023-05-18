@@ -7,28 +7,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Menú</title>
     <link rel="stylesheet" href="/static/css/stylemenu.css">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const quantitySelectors = document.querySelectorAll('.quantity-selector');
+    
+            quantitySelectors.forEach(selector => {
+                const minusButton = selector.querySelector('.minus-button');
+                const plusButton = selector.querySelector('.plus-button');
+                const quantityInput = selector.querySelector('input[type="number"]');
+    
+                minusButton.addEventListener('click', () => {
+                    let quantity = parseInt(quantityInput.value);
+                    if (quantity > 0) {
+                        quantity--;
+                    }
+                    quantityInput.value = quantity;
+                });
+    
+                plusButton.addEventListener('click', () => {
+                    let quantity = parseInt(quantityInput.value);
+                    quantity++;
+                    quantityInput.value = quantity;
+                });
+            });
+        });
+    </script>
+
 </head>
 
 <body>
     <section class="menus-area">
         <div class="container">
             <div class="section-title">
-                <h4> Menú</h4>
+                <h1> MENÚ</h1>
             </div>
-            <div class="menus">
-                {% for product in products %}
-                <div class="menu-items">
-                    <div class="single-menu">
-                        <span>${{product.price}}</span>
-                        <img src="{{ product.image }}" alt="{{ product.name }}" class="img-fluid" width="75%">
-                        <h4>{{product.name | title}}</h4>
-                        <!-- <p>{{product.descripction}}</p> -->
-                        <a href="">Ordena Ya</a>
+            <form method="post" action="{% url 'menu' %}">
+                {% csrf_token %}
+                <div class="menus">
+                    {% for product in products %}
+                    <div class="menu-items">
+                        <div class="single-menu">
+                            <span>${{ product.price }}</span>
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid" width="75%">
+                            <h4>{{ product.name | title }}</h4>
+                            <div class="quantity-selector">
+                                <button type="button" class="quantity-button minus-button">-</button>
+                                <input type="number" name="product_quantity_{{ product.id }}" value="0" min="0" readonly>
+                                <button type="button" class="quantity-button plus-button">+</button>
+                            </div>
+                        </div>
                     </div>
-                    
+                    {% endfor %}
                 </div>
-                {% endfor %}
-            </div>
+                <div class="botones">
+                    <div>
+                      <!-- <button type="submit" name="generate_invoice">Comprar</button> -->
+                      <a href="{% url 'factura' %}">Comprar</a>
+                      <a href="{% url 'home' %}">Volver al Home</a>
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
 </body>

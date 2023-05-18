@@ -1,0 +1,42 @@
+body {
+    background-color: white;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  h1, h2 {
+    text-align: center;
+    padding-top: 15px;
+  }
+  
+  h2 {
+    margin-top: 30px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  .total {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 20px;
+  }
+  
+  .total span {
+    font-weight: bold;
+  }
+
+  .container {
+    width: 360px;
+    height: 280px;
+    margin: auto;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: #d9f688;
+  }

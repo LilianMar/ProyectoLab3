@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Menú</title>
+    <link rel="stylesheet" href="/static/css/stylefactura.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Detalles de la Factura</h1>
+        <h2>Productos seleccionados:</h2>
+        <ul>
+            {% for product in products %}
+            <li>{{ product.name }} - ${{ product.price }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Total: ${{ total_price }}</h2>
+
+        <!-- <form method="post" action="{% url 'factura' bill_id=bill.id %}"> -->
+    </div>

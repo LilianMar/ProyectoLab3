@@ -40,6 +40,8 @@ urlpatterns = [
     path('registro/', TemplateView.as_view(template_name='login/register.html'), name='register'),
     # Ruta para el menú
     path('menu/', menu, name='menu'),
+    # ruta para factura
+    path('factura/', TemplateView.as_view(template_name='factura.html'), name='factura'),
 
     # USUARIOS
 

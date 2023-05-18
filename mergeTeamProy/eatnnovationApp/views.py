@@ -16,6 +16,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import get_object_or_404
 
 
 class CustomLoginView(LoginView):
@@ -57,12 +59,40 @@ class ProductCreate(SuccessMessageMixin, CreateView):
     def get_success_url(self):        
         return reverse('readProduct') # revisar la pagina a la que se va a redireccionar User
     
+@csrf_protect
 def menu(request):
-        products = Product.objects.all()
-        context = {
-            'products': products
-        }
-        return render(request, 'menu.html', context)
+    products = Product.objects.all()
+
+    if request.method == 'POST':
+        selected_products = request.POST.getlist('selected_products')
+        for product_id in selected_products:
+            quantity = int(request.POST.get(f'product_quantity_{product_id}', 0))
+            if quantity > 0:
+                product = get_object_or_404(Product, id=product_id)
+                DetailBill.objects.create(bill=bill, product=product, amount=quantity)
+
+    return render(request, 'menu.html', {'products': products})
+
+
+def generate_bill(request, bill_id):
+    bill = Bill.objects.get(id=bill_id)
+    products = bill.products.all()
+    total_price = sum([product.price for product in products])
+
+    if request.method == 'POST':
+        # Marca la factura como pagada
+        bill.paid = True
+        bill.save()
+
+        # Crea un registro de pago
+        Payment.objects.create(bill=bill, totalPrice=total_price)
+
+        # Redirige a una página de confirmación de pago
+        return redirect('payment_confirmation')
+
+    return render(request, 'factura.html', {'bill': bill, 'products': products, 'total_price': total_price})
+
+
     
 class ProductDetail(DetailView): 
     model = Product # Llamamos a la clase 'Product' que se encuentra en nuestro archivo 'models.py' 
